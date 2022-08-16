@@ -15,41 +15,45 @@
   nav {
     margin-left: 5rem;
     height: 5rem; // ocupa o tamanho total pra conseguir fazer o hover amarelo
+
+    a {
+      display: inline-block;
+      position: relative;
+      padding: 0 0.5rem;
+      height: 5 rem;
+      line-height: 5rem; // centralizar o texto, como tem a mesma altura que o total fica no centro
+      color: var(--gray-300);
+
+      transition: color 0.2s; // para o hover
+
+      // todo link que não é a 1, vai dar espaçamento
+      & + a {
+        margin-left: 2rem;
+      }
+
+      &:hover {
+        color: var(--white);
+      }
+
+      &.active {
+        color: var(--white);
+        font-weight: bold;
+      }
+
+      &.active::after {
+        content: "";
+        height: 3px;
+        border-radius: 3px 3px 0 0;
+        width: 100%;
+        position: absolute;
+        bottom: 1px; //nao ocupar linha cinza
+        left: 0;
+        background: var(--yellow-500);
+      }
+    }
   }
 
-  a {
-    display: inline-block;
-    position: relative;
-    padding: 0 0.5rem;
-    height: 5 rem;
-    line-height: 5rem; // centralizar o texto, como tem a mesma altura que o total fica no centro
-    color: var(--gray-300);
-
-    transition: color 0.2s; // para o hover
-
-    // todo link que não é a 1, vai dar espaçamento
-    & + a {
-      margin-left: 2rem;
-    }
-
-    &:hover {
-      color: var(--white);
-    }
-
-    &.active {
-      color: var(--white);
-      font-weight: bold;
-    }
-
-    &.active::after {
-      content: "";
-      height: 3px;
-      border-radius: 3px 3px 0 0;
-      width: 100%;
-      position: absolute;
-      bottom: 1px; //nao ocupar linha cinza
-      left: 0;
-      background: var(--yellow-500);
-    }
+  button {
+    margin-left: auto;//maximo de margin que da 
   }
 }
