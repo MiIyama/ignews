@@ -2,7 +2,7 @@
 import Head from "next/head";
 import { SubscribeButton } from "../componentes/SubscribeButton";
 import styles from "./home.module.scss";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { stripe } from "../services/stripe";
 
 interface HomeProps {
@@ -37,7 +37,7 @@ export default function Home({ product }: HomeProps) {
     </>
   );
 }
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetStaticProps = async () => {
   const price = await stripe.prices.retrieve("price_1LfcfjGNpLGtWB8tAMQu5OC1", {
     expand: ["product"],
   }); //id do preço no stripe ,expand dados do produto
@@ -53,5 +53,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     props: {
       product,
     },
+    revalidate: 60 * 60 * 24, //24 horas
   };
 };
